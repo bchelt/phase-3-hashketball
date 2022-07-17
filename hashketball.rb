@@ -127,3 +127,67 @@ def game_hash
 end
 
 # Write code here
+def find_player(name)
+  stats = nil
+  game_hash.find do |key, value|
+    value[:players].find do |player| 
+      if player[:player_name] == name
+        stats = player
+      end
+      player[:player_name] == name
+    end != nil
+  end
+  stats
+end
+
+def num_points_scored(name)
+  find_player(name)[:points]
+end
+
+def shoe_size(name)
+  find_player(name)[:shoe]
+end
+
+def team_colors(name)
+  colors = nil
+  game_hash.find do |key, value| 
+    if value[:team_name] == name
+      colors = value[:colors]
+    end
+    value[:team_name] == name
+  end
+  colors
+end
+
+def team_names
+  game_hash.map { |key, value| value[:team_name] }
+end
+
+def player_numbers(name)
+  numbers = nil
+  game_hash.find do |key, value|
+    if value[:team_name] == name
+      numbers = value[:players].map { |player| player[:number] }
+    end
+    value[:team_name == name]
+  end
+  numbers
+end
+
+def player_stats(name)
+  find_player(name)
+end
+
+def big_shoe_rebounds
+  largest_shoe = 0
+  rebounds = nil
+  game_hash.each do |key, value|
+    value[:players].each do |player|
+      if player[:shoe] > largest_shoe
+        largest_shoe = player[:shoe]
+        rebounds = player[:rebounds]
+      end
+    end
+  end
+  rebounds
+end
